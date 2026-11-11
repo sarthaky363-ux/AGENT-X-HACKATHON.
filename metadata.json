@@ -1,0 +1,6 @@
+{
+  "name": "ENTANGLE: Multi-Agent Disaster Response",
+  "description": "Multi-agent disaster-response coordinator for urban floods and heatwaves in India. Features reactive shared WorldState, candidate plan superposition, Monte Carlo simulation, and human-in-the-loop dispatch.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
