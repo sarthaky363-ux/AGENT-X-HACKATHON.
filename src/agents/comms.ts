@@ -61,7 +61,7 @@ async function draftForArea(areaName: string, canContinue: () => boolean): Promi
         : fallback[language],
     ])) as LanguageDrafts;
   } catch (error) {
-    console.info('[Comms Agent] Gemini draft unavailable; using validated templates.', error);
+    console.warn('[Comms Agent] Gemini draft unavailable; using validated templates.', error);
     return fallback;
   }
 }

@@ -474,13 +474,13 @@ async function requestPlansFromGemini(
     });
     if (!canContinue()) return undefined;
     if (!response.ok) {
-      console.info('[Dispatch Agent] Gemini plan-tool request HTTP', response.status, 'using local plans');
+      console.warn('[Dispatch Agent] Gemini plan-tool request failed with HTTP', response.status);
       return undefined;
     }
     const data = await response.json();
     if (!canContinue()) return undefined;
     if (!data.success && data.isFallback) {
-      console.info('[Dispatch Agent] Gemini plan-tool request used fallback:', data.error);
+      console.warn('[Dispatch Agent] Gemini plan-tool request used fallback:', data.error);
       return undefined;
     }
 
@@ -589,7 +589,7 @@ async function writePlanExplanations(plans: Plan[]): Promise<Plan[]> {
       }),
     });
     if (!response.ok) {
-      console.info('[Dispatch Agent] Gemini explanation request HTTP', response.status);
+      console.warn('[Dispatch Agent] Gemini explanation request failed with HTTP', response.status);
       return fallbackPlans;
     }
     const data = await response.json();
@@ -607,7 +607,7 @@ async function writePlanExplanations(plans: Plan[]): Promise<Plan[]> {
         : plan;
     });
   } catch (error) {
-    console.info('[Dispatch Agent] Gemini explanation unavailable; using deterministic explanations.', error);
+    console.warn('[Dispatch Agent] Gemini explanation unavailable; using deterministic explanations.', error);
     return fallbackPlans;
   }
 }
@@ -645,7 +645,7 @@ async function runDispatchAgent(
         STRATEGIES.map(strategy => build_plan(strategy, snapshot));
     } catch (error) {
       if (!canContinue()) return;
-      console.info('[Dispatch Agent] Gemini tool calling unavailable; building plans locally.', error);
+      console.warn('[Dispatch Agent] Gemini tool calling unavailable; building plans locally.', error);
       deterministicPlans = STRATEGIES.map(strategy => build_plan(strategy, snapshot));
     }
     if (!canContinue()) return;

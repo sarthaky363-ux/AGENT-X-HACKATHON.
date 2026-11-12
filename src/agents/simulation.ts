@@ -65,7 +65,7 @@ async function writeExplanation(
     });
     if (!canContinue()) return fallbackExplanation(plan, metrics);
     if (!response.ok) {
-      console.info('[Simulation Agent] Gemini explanation request HTTP', response.status);
+      console.warn('[Simulation Agent] Gemini explanation request failed with HTTP', response.status);
       return fallbackExplanation(plan, metrics);
     }
     const data = await response.json();
@@ -77,7 +77,7 @@ async function writeExplanation(
     return explanation || fallbackExplanation(plan, metrics);
   } catch (error) {
     if (!canContinue()) return fallbackExplanation(plan, metrics);
-    console.info('[Simulation Agent] Gemini explanation unavailable; using deterministic explanation.', error);
+    console.warn('[Simulation Agent] Gemini explanation unavailable; using deterministic explanation.', error);
     return fallbackExplanation(plan, metrics);
   }
 }

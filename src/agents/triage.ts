@@ -363,13 +363,13 @@ Decide which tools to call. First check for similar reports, then score, then me
           finalOutput = { decision: 'ignored', reasoning: 'System frozen during triage.' };
           break;
         }
-        console.info('[runTriageAgent] Gemini API unavailable, running deterministic triage:', networkErr);
+        console.warn('[runTriageAgent] Gemini API unavailable, running deterministic triage:', networkErr);
         finalOutput = await runDeterministicTriage(reportId, runGeneration);
         break;
       }
 
       if (!res.ok) {
-        console.info('[runTriageAgent] Server returned HTTP', res.status, 'Falling back to deterministic triage.');
+        console.warn('[runTriageAgent] Server returned HTTP', res.status, 'Falling back to deterministic triage.');
         finalOutput = await runDeterministicTriage(reportId, runGeneration);
         break;
       }
@@ -431,7 +431,7 @@ Decide which tools to call. First check for similar reports, then score, then me
           }
         } catch (jsonErr) {
           // Retry once on failure as per prompt rule
-          console.info('[runTriageAgent] JSON parse retry triggered:', jsonErr);
+          console.warn('[runTriageAgent] JSON parse failed, triggering 1-time schema retry:', jsonErr);
           const retryRes = await fetchWithTimeout('/api/gemini/agent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

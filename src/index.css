@@ -1,1 +1,73 @@
 @import "tailwindcss";
+
+@theme {
+  --color-canvas: #FAF6EE;
+  --color-surface: #FFFDF8;
+  --color-surface-sunken: #F2EBDD;
+  --color-border: #E4D9C5;
+  --color-ink: #3A2E26;
+  --color-ink-muted: #7A6A5A;
+  
+  --color-primary: #5F7A61;
+  --color-primary-hover: #4D664F;
+  --color-agent: #4F7C82;
+  --color-agent-hover: #3F656A;
+  --color-clay: #B0623A;
+  --color-clay-hover: #98532F;
+  --color-kill: #9E2F22;
+  --color-kill-hover: #84261B;
+
+  --color-sev-critical: #B8412F;
+  --color-sev-critical-tint: #F6DDD6;
+  --color-sev-high: #C77A24;
+  --color-sev-high-tint: #F8E6CC;
+  --color-sev-medium: #B89A2E;
+  --color-sev-medium-tint: #F5EBC4;
+  --color-sev-low: #6E8F6A;
+  --color-sev-low-tint: #E3EDDF;
+
+  --font-heading: "Inter Tight", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-card: 20px;
+  --radius-pill: 9999px;
+
+  --shadow-card: 0 1px 2px rgba(58, 46, 38, 0.06);
+  --shadow-card-hover: 0 4px 12px rgba(58, 46, 38, 0.08);
+}
+
+body {
+  background-color: #FAF6EE;
+  color: #3A2E26;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+html.demo-mode {
+  font-size: 17px;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Custom scrollbars matching the warm paper theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F2EBDD;
+}
+::-webkit-scrollbar-thumb {
+  background: #E4D9C5;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7A6A5A;
+}
